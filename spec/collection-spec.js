@@ -24,6 +24,13 @@ describe("collection", function() {
 
     });
 
+    it("returns the inserted element", function() {
+
+      var element = t("_");
+      expect(dom.insertAt(element, 0, container)).toBe(element);
+
+    });
+
     it("inserts an element in first position", function() {
 
       dom.insertAt(t("_"), 0, container);
@@ -80,6 +87,12 @@ describe("collection", function() {
       });
 
       dom.insertAt(element, 2, container);
+
+    });
+
+    it("returns the moved element", function() {
+
+      expect(dom.moveAt(element, 0, container)).toBe(element);
 
     });
 
@@ -140,6 +153,12 @@ describe("collection", function() {
 
     });
 
+    it("returns the replaced element", function() {
+
+      expect(dom.replaceAt(element, 0, container)).toBe(element);
+
+    });
+
     it("replaces an element in first position", function() {
 
       dom.replaceAt(element, 0, container);
@@ -186,6 +205,19 @@ describe("collection", function() {
 
       dom.removeAt(0, container);
       expect(container.textContent).toBe("bcdef");
+
+    });
+
+    it("returns the removed element", function() {
+
+      var a = container.childNodes[0];
+      expect(dom.removeAt(0, container)).toBe(a);
+
+    });
+
+    it("returns `undefined` if no element has been removed", function() {
+
+      expect(dom.removeAt(100, container)).toBe(undefined);
 
     });
 

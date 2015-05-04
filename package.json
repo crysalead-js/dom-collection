@@ -1,7 +1,7 @@
 {
   "name": "dom-collection",
   "version": "1.0.0",
-  "description": "Index based collection manipulation methods for DOM childNodes.",
+  "description": "Index based collection manipulation methods for DOM element child nodes.",
   "repository": {
     "type": "git",
     "url": "http://github.com/crysalead-js/dom-collection.git"

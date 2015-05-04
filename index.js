@@ -7,10 +7,10 @@ var collection = Object.create(null);
 /**
  * Inserts an DOM element at a specific index.
  *
- * @param  Object element   The DOM element insert.
- * @param  Number index     The index insertion value.
- * @param  Object parent    The parent container.
- * @return Object           The inserted DOM element.
+ * @param  Object element The DOM element insert.
+ * @param  Number index   The insertion index.
+ * @param  Object parent  The parent container.
+ * @return Object         The inserted DOM element.
  */
 collection.insertAt = function(element, index, parent) {
   var childNodes = parent.childNodes;
@@ -22,48 +22,42 @@ collection.insertAt = function(element, index, parent) {
 /**
  * Moves a DOM element to a specific index.
  *
- * @param  Object element   The DOM element to move.
- * @param  Number index     The index insertion value.
- * @param  Object parent    The parent container.
- * @return Object           The moved DOM element.
+ * @param  Object element The DOM element to move.
+ * @param  Number index   The target index.
+ * @param  Object parent  The parent container.
+ * @return Object         The moved DOM element.
  */
 collection.moveAt = function(element, index, parent) {
-  parent = selectParent(element, parent);
+  parent ? parent : element.parentNode;
   parent.removeChild(element);
   collection.insertAt(element, index, parent);
   return element;
 }
 
 /**
- * Replaces a node by another node.
+ * Replaces a DOM element at a specific index.
  *
- * @param Object newNode The new node.
- * @param Object oldNode The node to be replaced.
+ * @param  Object element The DOM element to replace by.
+ * @param  Number index   The index of the element to replace.
+ * @param  Object parent  The parent container.
+ * @return Object         The replaced DOM element.
  */
 collection.replaceAt = function(element, index, parent) {
-  parent = selectParent(element, parent);
+  parent ? parent : element.parentNode;
   var target = parent.childNodes[index];
   parent.replaceChild(element, target);
+  return element;
 }
 
-
 /**
- * Removes all childs inside a DOM element (faster than using innerHTML).
+ * Removes a DOM element at a specific index.
  *
- * @param Object element A DOM element to clean up.
+ * @param  Number index  The index of the element to remove.
+ * @param  Object parent The parent container.
  */
 collection.removeAt = function(index, parent) {
   var element = parent.childNodes[index];
-  if (element) {
-    return parent.removeChild(element);
-  }
-}
-
-function selectParent(element, parent) {
-  if (parent) {
-    return parent;
-  }
-  return element.parentNode;
+  return element ? parent.removeChild(element) : undefined;
 }
 
 /**
