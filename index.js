@@ -29,6 +29,10 @@ collection.insertAt = function(element, index, parent) {
  */
 collection.moveAt = function(element, index, parent) {
   parent ? parent : element.parentNode;
+  var target = parent.childNodes[index];
+  if (element === target) {
+    return element;
+  }
   parent.removeChild(element);
   collection.insertAt(element, index, parent);
   return element;
@@ -45,8 +49,10 @@ collection.moveAt = function(element, index, parent) {
 collection.replaceAt = function(element, index, parent) {
   parent ? parent : element.parentNode;
   var target = parent.childNodes[index];
-  parent.replaceChild(element, target);
-  return element;
+  if (element === target) {
+    return element;
+  }
+  return parent.replaceChild(element, target);
 }
 
 /**

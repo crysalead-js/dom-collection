@@ -155,7 +155,8 @@ describe("collection", function() {
 
     it("returns the replaced element", function() {
 
-      expect(dom.replaceAt(element, 0, container)).toBe(element);
+      var a = container.childNodes[0];
+      expect(dom.replaceAt(element, 0, container)).toBe(a);
 
     });
 
